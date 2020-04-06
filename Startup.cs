@@ -41,6 +41,7 @@ namespace DatingApp.API
             // service create once/request within the scope. Creates one instance each http request
             // uses same instance within other calls within same request
             services.AddScoped<IAuthRepository, AuthRepository>();
+            services.AddScoped<IDatingRepository, DatingRepository>();
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
                 {
