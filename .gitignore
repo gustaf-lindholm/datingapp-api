@@ -4,3 +4,4 @@ obj
 *.db
 appsettings.json
 datingapp.db-wal
+datingapp.db-shm
