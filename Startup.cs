@@ -45,7 +45,7 @@ namespace DatingApp.API
             services.Configure<CloudinarySettings>(Configuration.GetSection("CloudinarySettings"));
             services.AddAutoMapper(typeof(DatingRepository).Assembly);
 
-            // service create once/request within the scope. Creates one instance each http request
+            // AddScoped service creates a new instance per request within the scope. 
             // uses same instance within other calls within same request
             services.AddScoped<IAuthRepository, AuthRepository>();
             services.AddScoped<IDatingRepository, DatingRepository>();
@@ -60,6 +60,9 @@ namespace DatingApp.API
                         ValidateAudience = false,
                     };
                 });
+
+            
+            services.AddScoped<LogUserActivity>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
