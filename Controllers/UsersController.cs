@@ -33,15 +33,15 @@ namespace DatingApp.API.Controllers
 
             var userFromRepo = await _repo.GetUser(currentUserId);
 
-            var users = await _repo.GetUsers(userParams);
-
             userParams.UserId = currentUserId;
+            
 
             if (string.IsNullOrEmpty(userParams.Gender))
             {
                 userParams.Gender = userFromRepo.Gender == "male" ? "female" : "male";
             }
 
+            var users = await _repo.GetUsers(userParams);
             var usersToReturn = _mapper.Map<IEnumerable<UserForListDto>>(users);
 
             Response.AddPagination(users.CurrentPage, users.PageSize, users.TotalCount, users.TotalPages);
